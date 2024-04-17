@@ -15,8 +15,8 @@ const GenreBadge: React.FC<GenreProps> = ({ genre }) => (
 );
 
 
-export default function GenreBatchSlider({ list = genres, customStyle }: { list?: string[], customStyle: ViewStyle }) {
-    return <FlatList horizontal={true} data={list} style={[styles.genresContainer, customStyle]}
+export default function GenreBatchSlider({ list = genres, customStyle }: { list?: string[], customStyle?: ViewStyle }) {
+    return <FlatList scrollEnabled={false} horizontal={true} data={list} style={[styles.genresContainer, customStyle]}
                      renderItem={({ item, index }) => <GenreBadge key={index} genre={item} />} />;
 }
 
