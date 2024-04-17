@@ -1,20 +1,56 @@
-import React from "react";
-import { FlatList, SafeAreaView, View } from "react-native";
-import data from "../movieList.json";
+import { NavigationProp } from "@react-navigation/native";
+import React, { useEffect, useState } from "react";
+import { FlatList, SafeAreaView, Text, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import { addMoviesToList } from "../.././reduxStore";
+import { fetchData } from "../../apiPackage";
+// import data from "../movieList.json";
 import ListItem from "./listItem.tsx";
 import SearchBar from "./SearchBar.tsx";
 
-const MovieList: React.FC = () => {
-    console.log("data", data.description[0]);
+const MovieList: React.FC = ({ navigation }: { navigation: NavigationProp<any> }) => {
+    const dispatch = useDispatch();
+    const movies = useSelector((state) => state.movies);
+
+    const [searchInput, setSearchInput] = useState("James bond");
+
+    const { data, isFetching } = fetchData({
+        url: "https://search.imdbot.workers.dev",
+        params: { q: JSON.stringify(searchInput) },
+    });
+    useEffect(() => {
+
+        if (data) {
+            dispatch(addMoviesToList(data.data.description));
+        }
+    }, [data]);
+    const fetchMovies = () => {
+    };
+
+
+    useEffect(() => {
+        const callInterval = setTimeout(() => {
+            if(!searchInput || searchInput === "" ) {
+                dispatch(addMoviesToList([]));
+            }
+            fetchMovies();
+        }, 300);
+
+        return () => clearTimeout(callInterval);
+    }, [searchInput]);
+
+    if (!movies) return <Text>Loading</Text>;
+
     return (
             <View style={{ backgroundColor: "#efefef", flex: 1 }}>
                 <SafeAreaView style={{ borderWidth: 3, flex: 1 }}>
-                    <SearchBar />
-                    <FlatList style={{ flex: 1.8 }} data={data.description.slice(0, 10)} renderItem={ListItem} />
+                    <SearchBar update={setSearchInput} value={searchInput} />
+                    <FlatList style={{ flex: 1.8 }} data={movies?.slice(0, 10) || []}
+                              renderItem={({ item }) => <ListItem item={item} />} />
 
 
                     {/*// TODO show top rated in seperate list as a carousel
-                    <Swiper autoplay={true} style={{ alignItems: "center", justifyContent: "center" }}>*/}
+                        <Swiper autoplay={true} style={{ alignItems: "center", justifyContent: "center" }}>*/}
                     {/*    {data?.description?.map((item) => {*/}
                     {/*        return <SwipeItem item={item}/>;*/}
                     {/*    })}*/}
@@ -22,6 +58,7 @@ const MovieList: React.FC = () => {
                     {/*</Swiper>*/}
                 </SafeAreaView>
             </View>);
+    return <></>;
 };
 
 

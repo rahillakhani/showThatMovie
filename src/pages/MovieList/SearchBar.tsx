@@ -1,31 +1,21 @@
-import React, { useEffect, useState } from "react";
-import { Image, Pressable, SafeAreaView, Text, TextInput } from "react-native";
+import React, { Dispatch } from "react";
+import { Image, Pressable, SafeAreaView, TextInput } from "react-native";
 
 const searchIcon = "https://img.icons8.com/?size=256&id=132&format=png";
-const SearchBar: React.FC = () => {
-    const [inputVal, setInputVal] = useState("top in 2024");
-    const CallAPI = () => {
-        // console.log("inputVal", inputVal);
-    }
+type ISearchProps = { update: Dispatch<string>, value: string };
+const SearchBar: React.FC<ISearchProps> = ({ update, value }: ISearchProps) => {
 
-    useEffect(() => {
-        const callInterval = setTimeout(() => {
-            CallAPI();
-        }, 300);
-
-        return () => clearTimeout(callInterval);
-    }, [inputVal]);
     return (
             <SafeAreaView style={{flexDirection: "row" }}>
                 <TextInput
-                        value={inputVal}
+                        value={value}
                         hitSlop={{ bottom: 10, top: 10, left: 10, right: 10 }}
                         onChangeText={(value) => {
-                            setInputVal(value);
+                            update(value);
                         }}
                         style={{ padding: 10, borderWidth: 1, borderColor: "#cccccc", borderRadius: 5, flex: 1 }}
                 />
-                <Pressable onPress={CallAPI}>
+                <Pressable onPress={() => update(value)}>
                     <Image source={{ uri: searchIcon }} style={{ width: 30, height: 30 }} />
                 </Pressable>
 

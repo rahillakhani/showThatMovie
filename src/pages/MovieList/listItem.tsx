@@ -1,5 +1,6 @@
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 
 interface GenreProps {
     genre: string;
@@ -14,40 +15,44 @@ const GenreBadge: React.FC<GenreProps> = ({ genre }) => (
 const genres = ["HORROR", "MYSTERY", "THRILLER"];
 
 export default function ListItem({ item }) {
-    console.log(" item[\"#IMG_POSTER\"] ", item["#IMG_POSTER"] ? item["#IMG_POSTER"] : "https://static.vecteezy.com/system/resources/previews/004/141/669/large_2x/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg");
+    const navigation=useNavigation();
+    console.log(" item[\"#IMG_POSTER\"] ", item["#IMDB_ID"]);
+    if (!item) return <></>;
     return (
-            <View style={styles.container}>
-                <Image
-                        resizeMode="cover"
-                        source={{ uri: item["#IMG_POSTER"] ? item["#IMG_POSTER"] : "https://static.vecteezy.com/system/resources/previews/004/141/669/large_2x/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg" }}
-                        style={styles.moviePoster}
-                />
-                <View style={styles.content}>
-                    <Text style={styles.movieTitle}>{item["#TITLE"]}</Text>
-                    <Text style={styles.movieTitle}>{item["#YEAR"]}</Text>
-                    <View style={styles.ratingContainer}>
-                        <Image
-                                resizeMode="cover"
-                                source={{ uri: "https://cdn-icons-png.flaticon.com/512/1828/1828884.png" }}
-                                style={styles.ratingIcon}
-                        />
-                        <Text style={styles.ratingText}>{item["#RANK"]}</Text>
-                    </View>
-                    <View style={styles.genresContainer}>
-                        {genres.map((genre) => (
-                                <GenreBadge key={genre} genre={genre} />
-                        ))}
-                    </View>
-                    <View style={styles.durationContainer}>
-                        <Image
-                                resizeMode="cover"
-                                source={{ uri: "https://cdn-icons-png.flaticon.com/512/3239/3239945.png" }}
-                                style={styles.durationIcon}
-                        />
-                        <Text style={styles.durationText}>1h 47m</Text>
+            <Pressable onPress={() => navigation.navigate("MovieDetails", { identifier: item["#IMDB_ID"] })}>
+                <View style={styles.container}>
+                    <Image
+                            resizeMode="cover"
+                            source={{ uri: item["#IMG_POSTER"] ? item["#IMG_POSTER"] : "https://static.vecteezy.com/system/resources/previews/004/141/669/large_2x/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg" }}
+                            style={styles.moviePoster}
+                    />
+                    <View style={styles.content}>
+                        <Text style={styles.movieTitle}>{item["#TITLE"]}</Text>
+                        <Text style={styles.movieTitle}>{item["#YEAR"]}</Text>
+                        <View style={styles.ratingContainer}>
+                            <Image
+                                    resizeMode="cover"
+                                    source={{ uri: "https://cdn-icons-png.flaticon.com/512/1828/1828884.png" }}
+                                    style={styles.ratingIcon}
+                            />
+                            <Text style={styles.ratingText}>{item["#RANK"]}</Text>
+                        </View>
+                        <View style={styles.genresContainer}>
+                            {genres.map((genre) => (
+                                    <GenreBadge key={genre} genre={genre} />
+                            ))}
+                        </View>
+                        <View style={styles.durationContainer}>
+                            <Image
+                                    resizeMode="cover"
+                                    source={{ uri: "https://cdn-icons-png.flaticon.com/512/3239/3239945.png" }}
+                                    style={styles.durationIcon}
+                            />
+                            <Text style={styles.durationText}>1h 47m</Text>
+                        </View>
                     </View>
                 </View>
-            </View>
+            </Pressable>
     );
 }
 
@@ -62,6 +67,9 @@ const styles = StyleSheet.create({
         width: 100,
         height: 150,
         marginRight: 20,
+        borderWidth: 1,
+        borderColor: "#ffffff",
+        borderRadius: 10,
     },
     content: {
         flex: 1,
