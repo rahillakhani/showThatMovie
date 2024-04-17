@@ -9,9 +9,9 @@ const NavigationBody = () => {
 
     return (
             <NavigationContainer linking={{ prefixes: ["stm://"] }}>
-                <Stack.Navigator detachInactiveScreens={true} screenOptions={{animationEnabled: true, freezeOnBlur: true}} initialRouteName={"MovieList"}>
+                <Stack.Navigator detachInactiveScreens={true} screenOptions={{animationEnabled: true, freezeOnBlur: true,detachPreviousScreen: true}} initialRouteName={"MovieList"}>
                     <Stack.Screen name={"MovieList"} options={{ headerShown: false }} component={MovieList} />
-                    <Stack.Screen name={"MovieDetails"} options={{ headerShown: false }}
+                    <Stack.Screen name={"MovieDetails"} options={{ headerShown: true, animationEnabled: true }}
                                   component={MovieDetails} />
                 </Stack.Navigator>
             </NavigationContainer>

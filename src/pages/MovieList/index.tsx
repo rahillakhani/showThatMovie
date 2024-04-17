@@ -21,47 +21,45 @@ const MovieList: React.FC = ({ navigation }: { navigation: NavigationProp<any> }
         params: { q: JSON.stringify(searchInput) },
     });
     useEffect(() => {
-
         if (data) {
             dispatch(addMoviesToList(data.data.description));
         }
     }, [data]);
-    const fetchMovies = () => {
-    };
-
 
     useEffect(() => {
         const callInterval = setTimeout(() => {
-            if(!searchInput || searchInput === "" ) {
+            if (!searchInput || searchInput === "") {
                 dispatch(addMoviesToList([]));
             }
-            refetch();
+            (async () => {
+                console.log("awaited");
+                await refetch();
+                console.log("ran");
+            })();
         }, 300);
 
         return () => clearTimeout(callInterval);
     }, [searchInput]);
 
-    if (!movies) return <Text>Loading</Text>;
+    if (!movies && isFetching) return <Text>Loading</Text>;
 
     return (
-            <View style={{ backgroundColor: "#efefef", flex: 1 }}>
-                <SafeAreaView style={{ borderWidth: 3, flex: 1 }}>
-                    <SearchBar update={setSearchInput} value={searchInput} />
-                    <FlatList style={{ flex: 1.8 }} data={movies?.slice(0, 10) || []}
-                              renderItem={({ item }) => <ListItem item={item} />} />
+        <View style={{ backgroundColor: "#efefef", flex: 1 }}>
+            <SafeAreaView style={{ flex: 1 }}>
+                <SearchBar update={setSearchInput} value={searchInput} />
+                <FlatList style={{ flex: 1.8 }} data={movies?.slice(0, 10) || []} renderItem={({ item }) => <ListItem item={item} />} />
 
-
-                    {/*// TODO show top rated in seperate list as a carousel
+                {/*// TODO show top rated in seperate list as a carousel
                         <Swiper autoplay={true} style={{ alignItems: "center", justifyContent: "center" }}>*/}
-                    {/*    {data?.description?.map((item) => {*/}
-                    {/*        return <SwipeItem item={item}/>;*/}
-                    {/*    })}*/}
+                {/*    {data?.description?.map((item) => {*/}
+                {/*        return <SwipeItem item={item}/>;*/}
+                {/*    })}*/}
 
-                    {/*</Swiper>*/}
-                </SafeAreaView>
-            </View>);
+                {/*</Swiper>*/}
+            </SafeAreaView>
+        </View>
+    );
     return <></>;
 };
-
 
 export default MovieList;
