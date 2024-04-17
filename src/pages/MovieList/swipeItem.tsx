@@ -2,7 +2,6 @@ import * as React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 
 const SwipeItem = ({ item }: { item: unknown }) => {
-    console.log("item", item);
     const test = {
         "#ACTORS": "Abdul khadus Chouhan, Abdul Khadus",
         "#AKA": "Blockbuster rockstar (2022) ",

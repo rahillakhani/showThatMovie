@@ -1,5 +1,5 @@
 // store.ts
-import { configureStore, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface IMovie {
     id: string;
@@ -11,22 +11,20 @@ interface IMoviesState {
     movies: IMovie[];
 }
 
-const initialState: IMoviesState = {
-    movies: [],
-};
+const initialState: IMoviesState[] = {
+    moviesList: []
+}
 
 const moviesSlice = createSlice({
     name: 'movies',
     initialState,
     reducers: {
-        addMoviesToList(state, action: PayloadAction<IMovie[]>) {
-            state.movies = action.payload;
+        addMoviesToList(state, action: PayloadAction<IMoviesState[]>) {
+            state.moviesList = action.payload;
         },
     },
 });
 
 export const { addMoviesToList } = moviesSlice.actions;
 
-export default configureStore({
-    reducer: moviesSlice.reducer,
-});
+export default moviesSlice

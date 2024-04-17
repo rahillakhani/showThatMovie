@@ -28,9 +28,7 @@ export const fetchData = (apiData: ApiData, cb?: Function): UseQueryResult => {
                 "refetchOnWindowFocus": false
             }
         );
-        // console.log("resolvedData", JSON.stringify(resolvedData));
         if (resolvedData.error) {
-            // console.log("resolvedData.error", JSON.stringify(resolvedData.error));
             return { error: "request failed", data: null, isFetching: null };
         }
         if (cb) {

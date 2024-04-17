@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import { FlatList, Image, Pressable, StyleSheet, Text, View } from "react-native";
 
 interface GenreProps {
     genre: string;
@@ -27,8 +27,7 @@ export default function ListItem({ item }) {
                             style={styles.moviePoster}
                     />
                     <View style={styles.content}>
-                        <Text style={styles.movieTitle}>{item["#TITLE"]}</Text>
-                        <Text style={styles.movieTitle}>{item["#YEAR"]}</Text>
+                        <Text style={styles.movieTitle}>{item["#AKA"] || item["#TITLE"] - item["#YEAR"]}</Text>
                         <View style={styles.ratingContainer}>
                             <Image
                                     resizeMode="cover"
@@ -37,11 +36,8 @@ export default function ListItem({ item }) {
                             />
                             <Text style={styles.ratingText}>{item["#RANK"]}</Text>
                         </View>
-                        <View style={styles.genresContainer}>
-                            {genres.map((genre) => (
-                                    <GenreBadge key={genre} genre={genre} />
-                            ))}
-                        </View>
+                        <FlatList horizontal={true} data={genres} style={styles.genresContainer}
+                                  renderItem={({ item, index }) => <GenreBadge key={index} genre={item} />} />
                         <View style={styles.durationContainer}>
                             <Image
                                     resizeMode="cover"
@@ -50,6 +46,10 @@ export default function ListItem({ item }) {
                             />
                             <Text style={styles.durationText}>1h 47m</Text>
                         </View>
+                    </View>
+                    <View>
+                        <Image style={styles.ratingIcon}
+                               source={{ uri: "https://cdn-icons-png.flaticon.com/512/25/25283.png" }} />
                     </View>
                 </View>
             </Pressable>
@@ -93,18 +93,21 @@ const styles = StyleSheet.create({
         fontSize: 16,
     },
     genresContainer: {
-        flexDirection: "row",
         marginBottom: 8,
+        width: "90%",
+        maxHeight: 34,
+        padding: 4
     },
     genreBadge: {
         paddingHorizontal: 6,
-        paddingVertical: 2,
         borderRadius: 10,
         backgroundColor: "#DBE3FF",
         marginRight: 5,
     },
     genreText: {
-        fontSize: 14,
+        paddingVertical: 4,
+
+        fontSize: 13,
         color: "#88A4E8",
     },
     durationContainer: {

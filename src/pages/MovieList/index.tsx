@@ -10,11 +10,13 @@ import SearchBar from "./SearchBar.tsx";
 
 const MovieList: React.FC = ({ navigation }: { navigation: NavigationProp<any> }) => {
     const dispatch = useDispatch();
-    const movies = useSelector((state) => state.movies);
+    const movies = useSelector((state) => {
+        return state.movies.moviesList;
+    });
 
     const [searchInput, setSearchInput] = useState("James bond");
 
-    const { data, isFetching } = fetchData({
+    const { refetch, data, isFetching } = fetchData({
         url: "https://search.imdbot.workers.dev",
         params: { q: JSON.stringify(searchInput) },
     });
@@ -33,7 +35,7 @@ const MovieList: React.FC = ({ navigation }: { navigation: NavigationProp<any> }
             if(!searchInput || searchInput === "" ) {
                 dispatch(addMoviesToList([]));
             }
-            fetchMovies();
+            refetch();
         }, 300);
 
         return () => clearTimeout(callInterval);

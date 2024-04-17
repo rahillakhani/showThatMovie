@@ -1,1 +1,1 @@
-export NavigationBody from "./Navigation";
+export { default as NavigationBody } from "./NavigationBody";

@@ -4,8 +4,7 @@ import { SafeAreaView, Text } from "react-native";
 import { useSelector } from "react-redux";
 
 const MovieDetails: React.FC = ({ route, navigation }: { route: RouteProp<any>, navigation: NavigationProp<any> }) => {
-    const movieDetails = useSelector(state => state.movies.filter(el => el["#IMDB_ID"] === route.params.identifier))
-    console.log("route", movieDetails, route.params.identifier)
+    const movieDetails = useSelector(state => state.movies.moviesList.filter(el => el["#IMDB_ID"] === route.params.identifier))
     return (
             <SafeAreaView>
                 <Text>
