@@ -110,3 +110,14 @@ For more information or assistance, feel free to contact:
 This project is licensed under the [MIT License](LICENSE). Lights, camera, action, and let the movie magic begin!
 
 Ready to embark on your cinematic journey with ShowThatMovie? Lights, camera, search! 🌟🍿
+
+---------------------------
+TODO:
+
+1. export package to npm
+2. react web app
+3. Try another open api
+4. seperating business login - partially done.
+5. optimizations - screen level done, functions not done.
+
+---------------------------

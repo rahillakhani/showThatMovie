@@ -1,8 +1,16 @@
 import { useNavigation } from "@react-navigation/native";
+import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { useDispatch } from "react-redux";
+import { setMovieSearch } from "../reduxStore";
 
 const BottomNavigation = () => {
     const navigation = useNavigation();
+    const dispatch = useDispatch();
+    // TODO : screen variant from redux than using initial params.
+    // const handleViewChange = (variant) => {
+    //     dispatch(setMovieSearch(variant));
+    // }
 
     return (
         <View style={styles.bottomNavigation}>
