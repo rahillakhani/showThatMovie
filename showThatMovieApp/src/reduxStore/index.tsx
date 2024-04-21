@@ -1,37 +1,14 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {fetchMovies} from "./movieService.ts";
-
-export interface IMovie {
-    "#TITLE": string;
-    "#YEAR": number;
-    "#IMDB_ID": string;
-    "#RANK": number;
-    "#ACTORS": string;
-    "#AKA": string;
-    "#IMDB_URL": string;
-    "#IMDB_IV": string;
-    "#IMG_POSTER": string;
-    photo_width: number;
-    photo_height: number;
-};
-
-
-export interface IMoviesState {
-    moviesList: IMovie[];
-    movieSearch: string;
-    variant: 1 | 2;
-    year: { y: string | number };
-    title: { t: string };
-    loading: boolean;
-    error: string | null | undefined;
-}
+import {IMovie, IMoviesState} from "./movieDetails.types.ts";
+import {fetchMovies, fetchMoviesDetails} from "./movieService.ts";
 
 const initialState: IMoviesState = {
     moviesList: [],
+    moviesDetail: {},
     movieSearch: "top rated",
     variant: 1,
-    year: {y: ""},
-    title: {t: ""},
+    year: "",
+    title: "",
     loading: false,
     error: null
 };
@@ -45,15 +22,18 @@ const moviesSlice = createSlice({
         },
 
         setMovieSearch(state, action: PayloadAction<string>) {
-            console.log("action.payload", action.payload);
             state.movieSearch = action.payload;
         },
         setMovieYear: function (state: IMoviesState, action: PayloadAction<string>) {
-            state.year = {y: action.payload};
+            state.year = action.payload;
         },
 
         setMovieTitle: function (state: IMoviesState, action: PayloadAction<string>) {
-            state.title = {t: action.payload};
+            state.title = action.payload;
+        },
+
+        clearError: function (state: IMoviesState, action: PayloadAction<string>) {
+            state.error = undefined;
         },
 
     },
@@ -64,17 +44,36 @@ const moviesSlice = createSlice({
                     state.error = null;
                 })
                 .addCase(fetchMovies.fulfilled, (state, action) => {
-                    console.log("action.payload",action.payload.Search);
                     state.loading = false;
-                    state.moviesList = action.payload;
+                    if (!action.payload.Search) {
+                        state.error = action.payload.Error || "moviet found";
+                        return;
+                    }
+                    state.moviesList = action.payload.Search;
                 })
                 .addCase(fetchMovies.rejected, (state, action) => {
+                    state.loading = false;
+                    state.error = action.error.message;
+                })
+                .addCase(fetchMoviesDetails.pending, (state) => {
+                    state.loading = true;
+                    state.error = null;
+                })
+                .addCase(fetchMoviesDetails.fulfilled, (state, action) => {
+                    state.loading = false;
+                    if (action.payload.Error) {
+                        state.error = action.payload.Error || "moviet found";
+                        return;
+                    }
+                    state.moviesDetail = action.payload;
+                })
+                .addCase(fetchMoviesDetails.rejected, (state, action) => {
                     state.loading = false;
                     state.error = action.error.message;
                 });
     },
 });
 
-export const {addMoviesToList, setMovieSearch, setMovieYear, setMovieTitle} = moviesSlice.actions;
+export const {clearError, addMoviesToList, setMovieSearch, setMovieYear, setMovieTitle} = moviesSlice.actions;
 
 export default moviesSlice;

@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
         justifyContent: "space-around",
         alignItems: "center",
         height: 60,
-        backgroundColor: "#eee",
+        backgroundcolor: "#eee",
     },
     button: {
         flex: 1,

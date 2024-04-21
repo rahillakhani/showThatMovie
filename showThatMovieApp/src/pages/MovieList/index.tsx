@@ -13,46 +13,11 @@ const MovieList: React.FC = memo(({route}: { route: RouteProp<any> }) => {
     const {variant} = route.params;
 
     const movies = useSelector((state) => state.movies.moviesList);
-    const searchInput = useSelector((state) => state.movies.movieSearch);
-
-    const {refetch, isFetching, error, isError} = fetchData(searchInput);
-
-    // TODO: on each key up triggered, fix is not working
-    useEffect(() => {
-        const callInterval = setTimeout(() => {
-            // if (!searchInput || searchInput === "") {
-            //     dispatch(addMoviesToList([]));
-            // }
-            (async () => {
-                try {
-                    await refetch();
-                } catch (err) {
-                    console.log("err in refetch", err);
-                }
-            })();
-        }, 500);
-
-        return () => clearTimeout(callInterval);
-    }, [searchInput]);
-
-    if (isFetching)
-        return (
-                <View>
-                    <ActivityIndicator/>
-                    <Text>Loading</Text>
-                </View>
-        );
-    if (isError)
-        return (
-                <View>
-                    <Text>Error, {error && error.message}</Text>
-                </View>
-        );
 
     return (
-            <View style={{backgroundColor: "#efefef", flex: 1}}>
+            <View style={{backgroundcolor: "#efefef", flex: 1}}>
                 <SafeAreaView style={{flex: 1}}>
-                    <SearchBar search={refetch} value={searchInput}/>
+                    <SearchBar />
 
                     {variant == 1 && <FlatList style={{flex: 1.8}} data={movies?.slice(0, 10) || []}
                                                renderItem={({item}) => <ListItem item={item}/>}/>}

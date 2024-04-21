@@ -53,7 +53,6 @@ export const fetchData = (apiData: ApiData, cb?: (data: UseQueryResult | IFallba
             .then((response) => {
                 data = response.data;
 
-                console.log("response.data", response.data);
             })
             .catch((err) => {
                 data = {};
