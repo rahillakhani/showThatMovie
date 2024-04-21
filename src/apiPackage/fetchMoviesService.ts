@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { fetchData } from "../../apiPackage";
-import { addMoviesToList } from "../../reduxStore";
+import { fetchData } from "./index.ts";
+import { addMoviesToList } from "../reduxStore";
 
 const fetchRandom = (input) => {
     const dispatch = useDispatch();

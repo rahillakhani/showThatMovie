@@ -1,0 +1,14 @@
+// tsconfig.json
+
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "outDir": "./lib",
+        "strict": true,
+        "esModuleInterop": true,
+        "composite": true,
+        "emitDeclarationOnly": false,
+        "allowImportingTsExtensions": false
+    }
+}

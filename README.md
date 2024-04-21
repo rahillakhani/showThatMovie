@@ -29,25 +29,25 @@ Take your seat in the front row of the theater and navigate to the project direc
 
 3. **Pop Some Popcorn:**
 ```bash
-npm install
+ yarn install
 ```
 Pop some popcorn and install all the necessary dependencies. Trust us, it's going to be a blockbuster!
 
 4. **Start the Show:**
 ```bash
-npm start
+ yarn start
 ```
 Lights, camera, action! Start the show with our Metro Bundler, your ticket to the cinematic universe.
 
 5. **Grab Your 3D Glasses:**
 ```bash
-npm run ios
+ yarn run ios
 ```
 Strap on your 3D glasses and immerse yourself in the iOS movie experience with our state-of-the-art iOS Simulator.
 
 6. **Or Tune into Android Cinema:**
 ```bash
-npm run android
+ yarn run android
 ```
 Tune into the Android cinema experience and enjoy the movie marathon on the Android big screen. Don't forget the popcorn!
 
@@ -55,13 +55,13 @@ Tune into the Android cinema experience and enjoy the movie marathon on the Andr
 
 Make sure you have completed the React Native - Environment Setup instructions till "Creating a new application" step, before proceeding.
 
-You can use npm or yarn
+You can use  yarn or npm
 
 ```bash
-# using npm
-npm start
+# using  yarn
+ yarn start
 
-# OR using Yarn instead of npm
+# OR using npm instead of  yarn
 yarn start
 ```
 

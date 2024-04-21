@@ -3,15 +3,15 @@ import React, { memo, useEffect } from "react";
 import { ActivityIndicator, FlatList, SafeAreaView, Text, View } from "react-native";
 import Swiper from "react-native-swiper";
 import { useSelector } from "react-redux";
+import { fetchMovieList } from "../../apiPackage/fetchMoviesService.ts";
 import BottomNavigation from "../../components/BottomNavigation.tsx";
-import { fetchMovieList } from "./fetchService.ts";
 import ListItem from "./listItem.tsx";
 import SearchBar from "./SearchBar.tsx";
 import SwipeItem from "./swipeItem.tsx";
 
 const MovieList: React.FC = memo(({ route }: { route: RouteProp<any> }) => {
     const { variant } = route.params;
-    // const dispatch = useDispatch();
+
     const movies = useSelector((state) => state.movies.moviesList);
     const searchInput = useSelector((state) => state.movies.movieSearch);
 
@@ -53,6 +53,7 @@ const MovieList: React.FC = memo(({ route }: { route: RouteProp<any> }) => {
         <View style={{ backgroundColor: "#efefef", flex: 1 }}>
             <SafeAreaView style={{ flex: 1 }}>
                 <SearchBar search={refetch} value={searchInput} />
+
                 {variant == 1 && <FlatList style={{ flex: 1.8 }} data={movies?.slice(0, 10) || []} renderItem={({ item }) => <ListItem item={item} />} />}
 
                 {/*// TODO show top rated in seperate list as a carousel - */}
@@ -65,7 +66,7 @@ const MovieList: React.FC = memo(({ route }: { route: RouteProp<any> }) => {
                 )}
             </SafeAreaView>
             {/*// TODO Bottom nav */}
-            <BottomNavigation />
+            <BottomNavigation variant={variant} />
         </View>
     );
     return <></>;

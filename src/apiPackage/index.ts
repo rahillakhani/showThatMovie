@@ -1,5 +1,6 @@
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import axios, { AxiosError, AxiosResponse } from "axios";
+import { useEffect, useState } from "react";
 import { isDev } from "../utils.ts";
 
 interface ApiData {
@@ -10,12 +11,12 @@ interface ApiData {
 
 type IFallbackData = { data?: unknown };
 
-const apiCallList = {
+const apiCallList: Record<string, Function> = {
     POST: axios.post,
     GET: axios.get,
     DELETE: axios.delete,
     OPTIONS: axios.options,
-    PUT: axios.put
+    PUT: axios.put,
 };
 
 export const fetchData = (apiData: ApiData, cb?: (data: UseQueryResult | IFallbackData) => void): UseQueryResult => {
@@ -29,7 +30,7 @@ export const fetchData = (apiData: ApiData, cb?: (data: UseQueryResult | IFallba
             retry: 1,
             refetchOnWindowFocus: false,
             staleTime: 0,
-            gcTime: 0
+            gcTime: 0,
         });
         if (isDev) {
             if (resolvedData.data) {
@@ -67,10 +68,11 @@ export const fetchData = (apiData: ApiData, cb?: (data: UseQueryResult | IFallba
     }
 };
 
-const fetchApiData = async ({
-                                type = "GET",
-                                url = "",
-                                params = ""
-                            }: ApiData): Promise<AxiosResponse> => {
+export const fetchApiData = async ({ type = "GET", url = "", params = "" }) => {
     return apiCallList[type](url, { params });
 };
+
+
+export function wrapperComponent(props) {
+    return props.children;
+}
