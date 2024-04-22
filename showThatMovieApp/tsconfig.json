@@ -1,0 +1,22 @@
+{
+    "extends": ["@react-native/typescript-config/tsconfig.json", "@tsconfig/react-native/tsconfig.json"],
+    "compilerOptions": {
+        "jsx": "react",
+        "esModuleInterop": true,
+        "outDir": "./dist/",
+        "noImplicitAny": true,
+        "module": "nodenext",
+        "target": "es5",
+        "allowJs": true,
+        "moduleResolution": "NodeNext",
+        "allowSyntheticDefaultImports": true
+    },
+    "lib": ["es5", "es6", "dom"],
+    "module": "commonjs",
+    "types": ["node", "jest", "@testing-library/jest-dom"],
+    "exclude": [
+      "../node_modules", "__tests__", "__mocks__"],
+    "paths": {
+        "crypto": ["node_modules/crypto-js"]
+    }
+}
