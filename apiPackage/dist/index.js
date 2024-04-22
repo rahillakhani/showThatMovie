@@ -211,7 +211,7 @@ var fetchMovies = (0, import_toolkit.createAsyncThunk)("movies/fetchMovies", fun
                     ]);
                     return [
                         4,
-                        import_axios.default.get(process.env.RESCT_APP_BASE_URL, {
+                        import_axios.default.get(process.env.REACT_APP_BASE_URL, {
                             params: {
                                 apikey: process.env.REACT_APP_OmdbApiToken,
                                 r: "json",
@@ -261,7 +261,7 @@ var fetchMoviesDetails = (0, import_toolkit.createAsyncThunk)("movies/fetchMovie
                     ]);
                     return [
                         4,
-                        import_axios.default.get(process.env.RESCT_APP_BASE_URL, {
+                        import_axios.default.get(process.env.REACT_APP_BASE_URL, {
                             params: {
                                 apikey: process.env.REACT_APP_OmdbApiToken,
                                 i: searchQuery

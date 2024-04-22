@@ -142,7 +142,7 @@ var fetchMovies = createAsyncThunk("movies/fetchMovies", function() {
                     ]);
                     return [
                         4,
-                        axios.get(process.env.RESCT_APP_BASE_URL, {
+                        axios.get(process.env.REACT_APP_BASE_URL, {
                             params: {
                                 apikey: process.env.REACT_APP_OmdbApiToken,
                                 r: "json",
@@ -192,7 +192,7 @@ var fetchMoviesDetails = createAsyncThunk("movies/fetchMovieDetail", function() 
                     ]);
                     return [
                         4,
-                        axios.get(process.env.RESCT_APP_BASE_URL, {
+                        axios.get(process.env.REACT_APP_BASE_URL, {
                             params: {
                                 apikey: process.env.REACT_APP_OmdbApiToken,
                                 i: searchQuery

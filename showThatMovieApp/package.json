@@ -15,6 +15,7 @@
         "@react-navigation/stack": "^6.3.29",
         "@reduxjs/toolkit": "^2.2.3",
         "@tanstack/react-query": "^5.29.2",
+        "apipackage": "../apiPackage",
         "axios": "^1.6.8",
         "i": "^0.3.7",
         "npm": "^10.5.2",
