@@ -5,10 +5,9 @@ import {fetchMovies, fetchMoviesDetails} from "./movieService.ts";
 const initialState: IMoviesState = {
     moviesList: [],
     moviesDetail: {},
-    movieSearch: "top rated",
     variant: 1,
     year: "",
-    title: "",
+    title: "top rated",
     loading: false,
     error: null
 };
@@ -21,9 +20,6 @@ const moviesSlice = createSlice({
             state.moviesList = action.payload;
         },
 
-        setMovieSearch(state, action: PayloadAction<string>) {
-            state.movieSearch = action.payload;
-        },
         setMovieYear: function (state: IMoviesState, action: PayloadAction<string>) {
             state.year = action.payload;
         },
@@ -74,6 +70,6 @@ const moviesSlice = createSlice({
     },
 });
 
-export const {clearError, addMoviesToList, setMovieSearch, setMovieYear, setMovieTitle} = moviesSlice.actions;
+export const {clearError, addMoviesToList, setMovieYear, setMovieTitle} = moviesSlice.actions;
 
 export default moviesSlice;

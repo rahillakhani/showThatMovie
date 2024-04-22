@@ -62,7 +62,7 @@ const MovieDetails: React.FC = ({ route }: { route: RouteProp<any> }) => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundcolor: "#FFF",
+        backgroundColor: "#FFF",
     },
     backgroundImage: {
         overflow: "hidden",
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     },
     genreContainer: {
         borderRadius: 100,
-        backgroundcolor: "#DBE3FF",
+        backgroundColor: "#DBE3FF",
         paddingVertical: 4,
         paddingHorizontal: 12,
         justifyContent: "center",

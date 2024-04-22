@@ -1,21 +1,23 @@
-import {RouteProp} from "@react-navigation/native";
-import React, {memo, useEffect} from "react";
-import {ActivityIndicator, FlatList, SafeAreaView, Text, View} from "react-native";
+import {ParamListBase, RouteProp} from "@react-navigation/native";
+import React, {memo} from "react";
+import {FlatList, SafeAreaView, View} from "react-native";
 import Swiper from "react-native-swiper";
 import {useSelector} from "react-redux";
 import BottomNavigation from "../../components/BottomNavigation.tsx";
-import {fetchData} from "../../service";
 import ListItem from "./listItem.tsx";
 import SearchBar from "./SearchBar.tsx";
 import SwipeItem from "./swipeItem.tsx";
 
-const MovieList: React.FC = memo(({route}: { route: RouteProp<any> }) => {
+
+type IMovieList = { route: RouteProp<ParamListBase> }
+
+const MovieList: React.FC<IMovieList> = memo(({route}: IMovieList) => {
     const {variant} = route.params;
 
     const movies = useSelector((state) => state.movies.moviesList);
 
     return (
-            <View style={{backgroundcolor: "#efefef", flex: 1}}>
+            <View style={{backgroundColor: "#efefef", flex: 1}}>
                 <SafeAreaView style={{flex: 1}}>
                     <SearchBar />
 

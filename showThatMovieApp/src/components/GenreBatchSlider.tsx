@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     genreBadge: {
         paddingHorizontal: 6,
         borderRadius: 10,
-        backgroundcolor: "#DBE3FF",
+        backgroundColor: "#DBE3FF",
         marginRight: 5,
     },
     genreText: {
