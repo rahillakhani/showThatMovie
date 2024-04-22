@@ -114,10 +114,10 @@ Ready to embark on your cinematic journey with ShowThatMovie? Lights, camera, se
 ---------------------------
 TODO:
 
-1. export package to npm
-2. react web app
-3. Try another open api
-4. seperating business login - partially done.
-5. optimizations - screen level done, functions not done.
+1. export package to npm - created a seperate package. https://github.com/rahillakhani/showThatMovie/tree/apiPackage
+2. react web app - created - challenged on TS into JS issue.
+3. Try another open api - changes are pushed on to new branch here->> https://github.com/rahillakhani/showThatMovie/tree/apiChange
+4. seperating business login - done
+5. optimizations - screen level done, functions partially done.
 
 ---------------------------

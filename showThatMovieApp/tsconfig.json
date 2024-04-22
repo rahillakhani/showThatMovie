@@ -14,7 +14,8 @@
     "lib": ["es5", "es6", "dom"],
     "module": "commonjs",
     "types": ["node", "jest", "@testing-library/jest-dom"],
-    "exclude": ["node_modules", "__tests__", "__mocks__"],
+    "exclude": [
+      "../node_modules", "__tests__", "__mocks__"],
     "paths": {
         "crypto": ["node_modules/crypto-js"]
     }
