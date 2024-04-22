@@ -3,12 +3,12 @@
     "version": "0.0.1",
     "private": true,
     "scripts": {
-        "android": "../node_modules/.bin/react-native run-android",
-        "ios": "../node_modules/.bin/react-native run-ios -- -verbose",
-        "clean:ios": " cd ../ios && rm -rf ~/Library/Developer/Xcode/DerivedData && rm -rf ./build && cd ..",
-        "lint": "../node_modules/.bin/eslint .",
-        "start": "../node_modules/.bin/react-native start",
-        "test": "../node_modules/.bin/jest"
+        "android": "react-native run-android",
+        "ios": "react-native run-ios -- -verbose",
+        "clean:ios": "cd ./ios && rm -rf ~/Library/Developer/Xcode/DerivedData && rm -rf ./build && cd ..",
+        "lint": "eslint .",
+        "start": "export omdbApiToken=a2561a37 && react-native start",
+        "test": "jest"
     },
     "dependencies": {
         "@react-navigation/native": "^6.1.17",
@@ -18,11 +18,13 @@
         "axios": "^1.6.8",
         "i": "^0.3.7",
         "npm": "^10.5.2",
-        "react": "18.0.0",
+        "react": "18.2.0",
         "react-native": "0.73.0",
         "react-native-dotenv": "^3.4.11",
         "react-native-gesture-handler": "^2.16.0",
         "react-native-safe-area-context": "^4.9.0",
+        "react-native-screens": "^3.30.1",
+        "react-native-select-dropdown": "^4.0.1",
         "react-native-swiper": "^1.6.0",
         "react-redux": "^9.1.1"
     },

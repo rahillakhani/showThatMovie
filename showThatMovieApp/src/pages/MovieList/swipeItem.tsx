@@ -6,16 +6,16 @@ import GenreBatchSlider from "../../components/GenreBatchSlider.tsx";
 const SwipeItem = ({ item }: { item: unknown }) => {
     const navigation = useNavigation();
     return (
-        <View key={item["#IMDB_ID"]} style={styles.movieTile}>
+        <View key={item["imdbID"]} style={styles.movieTile}>
             <Image
                 source={{
-                    uri: item["#IMG_POSTER"] || "https://cdn.builder.io/api/v1/image/assets/TEMP/93384f6add86a17298b671a8a035f738c59cb7bcccb8b57380bfb991178cb65b?",
+                    uri: item["Poster"] || "https://cdn.builder.io/api/v1/image/assets/TEMP/93384f6add86a17298b671a8a035f738c59cb7bcccb8b57380bfb991178cb65b?",
                 }}
                 style={styles.movieImage}
             />
             <View style={styles.movieTitle}>
-                <Text>{item["#TITLE"]}</Text>
-                <Text>{item["#YEAR"]}</Text>
+                <Text>{item["Title"]}</Text>
+                <Text>{item["Year"]}</Text>
                 <GenreBatchSlider customStyle={{ maxHeight: 40 }} />
 
                 <View style={styles.rating}>
@@ -25,10 +25,10 @@ const SwipeItem = ({ item }: { item: unknown }) => {
                         }}
                         style={styles.ratingImage}
                     />
-                    <Text style={styles.ratingText}>9.1/10 IMDb {item["#RANK"]}</Text>
+                    <Text style={styles.ratingText}>9.1/10 IMDb {item["imdbID"]}</Text>
                 </View>
                 <View style={styles.buttonStyle}>
-                    <Button title={"View Details"} onPress={() => navigation.navigate("MovieDetails", { identifier: item["#IMDB_ID"] })} />
+                    <Button title={"View Details"} onPress={() => navigation.navigate("MovieDetails", { identifier: item["IMDB_ID"] })} />
                 </View>
             </View>
         </View>
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     },
     movieImage: { aspectRatio: "1.56" },
     movieTitle: {
-        color: "#000",
+        color: "#000000",
         letterSpacing: 0.28,
         marginTop: 12,
         width: "100%",

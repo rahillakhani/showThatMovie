@@ -4,7 +4,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useDispatch } from "react-redux";
 import { setMovieSearch } from "../reduxStore";
 
-const BottomNavigation = () => {
+const BottomNavigation = ({variant}) => {
     const navigation = useNavigation();
     const dispatch = useDispatch();
     // TODO : screen variant from redux than using initial params.
@@ -15,10 +15,10 @@ const BottomNavigation = () => {
     return (
         <View style={styles.bottomNavigation}>
             <TouchableOpacity onPress={() => navigation.navigate("MovieList")} style={styles.button}>
-                <Text>Screen Option 1</Text>
+                <Text style={{fontWeight: variant == 1? 700: 300}}>Screen Option 1</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.navigate("MovieList2")} style={styles.button}>
-                <Text>Screen 2</Text>
+                <Text style={{fontWeight: variant == 2? 700: 300}}>Screen Option 2</Text>
             </TouchableOpacity>
         </View>
     );

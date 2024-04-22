@@ -66,4 +66,6 @@ yarn-error.log
 /coverage
 
 .idea
+*.idea
 */node_modules/
+./showThatMovieApp/ios/Pods

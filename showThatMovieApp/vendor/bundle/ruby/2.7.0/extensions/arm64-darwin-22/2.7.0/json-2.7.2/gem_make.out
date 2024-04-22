@@ -1,0 +1,13 @@
+current directory: /Users/mmt10876/Documents/workspace/personal/showThatMovie/vendor/bundle/ruby/2.7.0/gems/json-2.7.2/ext/json
+/usr/local/rbenv/versions/2.7.6/bin/ruby -I /usr/local/rbenv/versions/2.7.6/lib/ruby/2.7.0 -r ./siteconf20240415-57749-ka04q5.rb extconf.rb
+creating Makefile
+
+current directory: /Users/mmt10876/Documents/workspace/personal/showThatMovie/vendor/bundle/ruby/2.7.0/gems/json-2.7.2/ext/json
+make "DESTDIR=" clean
+
+current directory: /Users/mmt10876/Documents/workspace/personal/showThatMovie/vendor/bundle/ruby/2.7.0/gems/json-2.7.2/ext/json
+make "DESTDIR="
+make: Nothing to be done for `all'.
+
+current directory: /Users/mmt10876/Documents/workspace/personal/showThatMovie/vendor/bundle/ruby/2.7.0/gems/json-2.7.2/ext/json
+make "DESTDIR=" install

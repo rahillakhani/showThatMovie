@@ -7,29 +7,29 @@ export default function ListItem({ item }) {
     const navigation = useNavigation();
     if (!item) return <></>;
     return (
-        <Pressable onPress={() => navigation.navigate("MovieDetails", { identifier: item["#IMDB_ID"] })}>
+        <Pressable onPress={() => navigation.navigate("MovieDetails", { identifier: item["imdbID"] })}>
             <View style={styles.container}>
                 <Image
                     resizeMode='cover'
                     source={{
-                        uri: item["#IMG_POSTER"]
-                            ? item["#IMG_POSTER"]
+                        uri: item["Poster"]
+                            ? item["Poster"]
                             : "https://static.vecteezy.com/system/resources/previews/004/141/669/large_2x/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg",
                     }}
                     style={styles.moviePoster}
                 />
                 <View style={styles.content}>
-                    <Text style={styles.movieTitle}>{item["#AKA"] || item["#TITLE"] - item["#YEAR"]}</Text>
+                    <Text style={styles.movieTitle}>{ item["Title"]} - {item["Year"]}</Text>
                     <View style={styles.ratingContainer}>
                         <Image resizeMode='cover' source={{ uri: "https://cdn-icons-png.flaticon.com/512/1828/1828884.png" }} style={styles.ratingIcon} />
-                        <Text style={styles.ratingText}>rank {item["#RANK"]}</Text>
+                        {/*<Text style={styles.ratingText}>rank {item["#RANK"]}</Text>*/}
                     </View>
                     {/*<FlatList horizontal={true} data={genres} style={styles.genresContainer} renderItem={({ item, index }) => <GenreBadge key={index} genre={item} />} />*/}
-                    <GenreBatchSlider />
-                    <View style={styles.durationContainer}>
-                        <Image resizeMode='cover' source={{ uri: "https://cdn-icons-png.flaticon.com/512/3239/3239945.png" }} style={styles.durationIcon} />
-                        <Text style={styles.durationText}>00h 00m</Text>
-                    </View>
+                    {/*<GenreBatchSlider />*/}
+                    {/*<View style={styles.durationContainer}>*/}
+                    {/*    <Image resizeMode='cover' source={{ uri: "https://cdn-icons-png.flaticon.com/512/3239/3239945.png" }} style={styles.durationIcon} />*/}
+                    {/*    <Text style={styles.durationText}>00h 00m</Text>*/}
+                    {/*</View>*/}
                 </View>
                 <View>
                     <Image style={styles.ratingIcon} source={{ uri: "https://cdn-icons-png.flaticon.com/512/25/25283.png" }} />

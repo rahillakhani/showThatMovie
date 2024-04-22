@@ -1,51 +1,75 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-export interface IMovie {
-    "#TITLE": string;
-    "#YEAR": number;
-    "#IMDB_ID": string;
-    "#RANK": number;
-    "#ACTORS": string;
-    "#AKA": string;
-    "#IMDB_URL": string;
-    "#IMDB_IV": string;
-    "#IMG_POSTER": string;
-    photo_width: number;
-    photo_height: number;
-};
-
-
-export interface IMoviesState {
-    moviesList: IMovie[];
-    movieSearch: string;
-    variant: 1 | 2;
-}
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {IMovie, IMoviesState} from "./movieDetails.types.ts";
+import {fetchMovies, fetchMoviesDetails} from "./movieService.ts";
 
 const initialState: IMoviesState = {
     moviesList: [],
-    movieSearch: "top rated",
+    moviesDetail: {},
     variant: 1,
+    year: "",
+    title: "top rated",
+    loading: false,
+    error: null
 };
 
 const moviesSlice = createSlice({
     name: 'movies',
     initialState,
     reducers: {
-        addMoviesToList(state, action: PayloadAction<IMoviesState>) {
+        addMoviesToList(state, action: PayloadAction<IMovie[]>) {
             state.moviesList = action.payload;
         },
 
-        setMovieSearch(state, action: PayloadAction<IMoviesState>) {
-            console.log("action.payload",action.payload);
-            state.movieSearch = action.payload;
+        setMovieYear: function (state: IMoviesState, action: PayloadAction<string>) {
+            state.year = action.payload;
         },
-        setScreenVariant(state, action: PayloadAction<IMoviesState>) {
-            if(action.payload > 2 || action.payload < 1 ) return;
-            state.variant = action.payload;
+
+        setMovieTitle: function (state: IMoviesState, action: PayloadAction<string>) {
+            state.title = action.payload;
         },
+
+        clearError: function (state: IMoviesState, action: PayloadAction<string>) {
+            state.error = undefined;
+        },
+
+    },
+    extraReducers: (builder) => {
+        builder
+                .addCase(fetchMovies.pending, (state) => {
+                    state.loading = true;
+                    state.error = null;
+                })
+                .addCase(fetchMovies.fulfilled, (state, action) => {
+                    state.loading = false;
+                    if (!action.payload.Search) {
+                        state.error = action.payload.Error || "moviet found";
+                        return;
+                    }
+                    state.moviesList = action.payload.Search;
+                })
+                .addCase(fetchMovies.rejected, (state, action) => {
+                    state.loading = false;
+                    state.error = action.error.message;
+                })
+                .addCase(fetchMoviesDetails.pending, (state) => {
+                    state.loading = true;
+                    state.error = null;
+                })
+                .addCase(fetchMoviesDetails.fulfilled, (state, action) => {
+                    state.loading = false;
+                    if (action.payload.Error) {
+                        state.error = action.payload.Error || "moviet found";
+                        return;
+                    }
+                    state.moviesDetail = action.payload;
+                })
+                .addCase(fetchMoviesDetails.rejected, (state, action) => {
+                    state.loading = false;
+                    state.error = action.error.message;
+                });
     },
 });
 
-export const { addMoviesToList, setMovieSearch } = moviesSlice.actions;
+export const {clearError, addMoviesToList, setMovieYear, setMovieTitle} = moviesSlice.actions;
 
 export default moviesSlice;
