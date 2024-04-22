@@ -2,6 +2,8 @@
     "name": "showthatmovieweb",
     "version": "0.1.0",
     "private": true,
+    "keywords": ["react", "react native", "redux", "apiConsumer"],
+    "author": "Rahil Lakhani",
     "dependencies": {
         "@babel/core": "^7.16.0",
         "apifetch": "../apiPackage",

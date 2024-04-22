@@ -2,6 +2,13 @@
     "name": "showthatmovie",
     "version": "0.0.1",
     "private": true,
+    "keywords": [
+        "react",
+        "react native",
+        "redux",
+        "apiConsumer"
+    ],
+    "author": "Rahil Lakhani",
     "scripts": {
         "android": "react-native run-android",
         "ios": "react-native run-ios -- -verbose",
