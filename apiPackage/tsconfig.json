@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "jsx": "react",
+        "esModuleInterop": true,
+        "outDir": "./dist/",
+        "noImplicitAny": true,
+        "module": "nodenext",
+        "target": "es5",
+        "allowJs": true,
+        "moduleResolution": "NodeNext",
+        "allowSyntheticDefaultImports": true
+    },
+    "lib": ["es5", "es6", "dom"],
+    "module": "commonjs",
+    "exclude": [
+      "../node_modules", "__tests__", "__mocks__"],
+
+}

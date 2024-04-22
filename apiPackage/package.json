@@ -1,0 +1,28 @@
+{
+    "name": "apipackage",
+    "version": "1.0.0",
+    "description": "",
+    "main": "./dist/index.js",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "tsup",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@swc/core": "^1.4.16",
+        "@types/node": "^20.12.7",
+        "tsup": "^8.0.2"
+    },
+    "dependencies": {
+        "@reduxjs/toolkit": "^2.2.3",
+        "axios": "^1.6.8",
+        "typescript": "^5.4.5"
+    }
+}
