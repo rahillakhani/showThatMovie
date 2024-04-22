@@ -23,7 +23,7 @@ Secure your golden ticket to the movie marathon by cloning our repository.
 
 2. **Find Your Seat:**
 ```
-cd showThatMovie
+cd ./showThatMovie/showThatMovieApp
 ```
 Take your seat in the front row of the theater and navigate to the project directory.
 
